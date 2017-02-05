@@ -58,14 +58,14 @@ NSString* printASCIIEncodingForString(NSString *string) {
 
 static NSString *const ZIKCellularAuthorizationFixedKey = @"ZIKCellularAuthorizationFixed";
 static void *CoreTelephonyHandle;
-static void *FTDeviceSupportHandle;
+static void *ServicesHandle;
 static CTCellularData *cellularDataHandle;
 
 @implementation ZIKCellularAuthorization
 
 + (void)requestCellularAuthorization {
     NSAssert([AppBundleIdentifier isEqualToString:[NSBundle mainBundle].bundleIdentifier], @"AppBundleIdentifier和bundle id不一致，请手动配置");
-    NSAssert(!CoreTelephonyHandle && !FTDeviceSupportHandle && !cellularDataHandle, @"不要重复调用");
+    NSAssert(!CoreTelephonyHandle && !ServicesHandle && !cellularDataHandle, @"不要重复调用");
     
     if ([self appFixed]) {
         NSLog(@"ZIKCellularAuthorization：此app已经执行过修复");
@@ -81,7 +81,7 @@ static CTCellularData *cellularDataHandle;
         //since iOS 7
         CFTypeRef (*connectionCreateOnTargetQueue)(CFAllocatorRef, NSString *, dispatch_queue_t, void*) = dlsym(CoreTelephonyHandle, CTServerConnectionCreateOnTargetQueue_ASCII);
         //since iOS 7
-        int (*changeCellularPolicy)(CFTypeRef, NSString *, NSDictionary*) = dlsym(CoreTelephonyHandle, CTServerConnectionSetCellularUsagePolicy_ASCII);
+        int (*changeCellularPolicy)(CFTypeRef, NSString *, NSDictionary *) = dlsym(CoreTelephonyHandle, CTServerConnectionSetCellularUsagePolicy_ASCII);
         if (!connectionCreateOnTargetQueue || !changeCellularPolicy) {
             NSLog(@"ZIKCellularAuthorization：调用changeCellularPolicy失败");
             return;
@@ -96,7 +96,7 @@ static CTCellularData *cellularDataHandle;
         changeCellularPolicy(connection, AppBundleIdentifier, @{stringFromASCII(kCTCellularUsagePolicyDataAllowed_ASCII):@YES});
     }
     
-    FTDeviceSupportHandle = dlopen(FTServicesFrameworkPath_ASCII, RTLD_LAZY);
+    ServicesHandle = dlopen(FTServicesFrameworkPath_ASCII, RTLD_LAZY);
     //since iOS 5
     Class NetworkSupport = NSClassFromString(stringFromASCII(FTNetworkSupport_ASCII));
     
@@ -137,9 +137,9 @@ static CTCellularData *cellularDataHandle;
         dlclose(CoreTelephonyHandle);
         CoreTelephonyHandle = NULL;
     }
-    if (FTDeviceSupportHandle) {
-        dlclose(FTDeviceSupportHandle);
-        FTDeviceSupportHandle = NULL;
+    if (ServicesHandle) {
+        dlclose(ServicesHandle);
+        ServicesHandle = NULL;
     }
     cellularDataHandle.cellularDataRestrictionDidUpdateNotifier = nil;
     cellularDataHandle = nil;
