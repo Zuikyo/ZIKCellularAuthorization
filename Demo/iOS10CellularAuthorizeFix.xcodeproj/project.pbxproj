@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F8491E661E44E15E0093D6AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8491E651E44E15E0093D6AB /* main.m */; };
+		F8491E691E44E15E0093D6AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8491E681E44E15E0093D6AB /* AppDelegate.m */; };
+		F8491E6C1E44E15E0093D6AB /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8491E6B1E44E15E0093D6AB /* MainViewController.m */; };
+		F8491E6F1E44E15E0093D6AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8491E6D1E44E15E0093D6AB /* Main.storyboard */; };
+		F8491E711E44E15E0093D6AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8491E701E44E15E0093D6AB /* Assets.xcassets */; };
+		F8491E741E44E15E0093D6AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8491E721E44E15E0093D6AB /* LaunchScreen.storyboard */; };
+		F8491E801E44EE600093D6AB /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8491E7F1E44EE600093D6AB /* WebViewController.m */; };
+		F8491E831E44F2EC0093D6AB /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8491E821E44F2EC0093D6AB /* CoreTelephony.framework */; };
+		F8491E871E45F3F30093D6AB /* ZIKCellularAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = F8491E861E45F3F30093D6AB /* ZIKCellularAuthorization.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F8491E611E44E15E0093D6AB /* iOS10CellularAuthorizeFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS10CellularAuthorizeFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8491E651E44E15E0093D6AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F8491E671E44E15E0093D6AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F8491E681E44E15E0093D6AB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F8491E6A1E44E15E0093D6AB /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		F8491E6B1E44E15E0093D6AB /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		F8491E6E1E44E15E0093D6AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F8491E701E44E15E0093D6AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F8491E731E44E15E0093D6AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F8491E751E44E15E0093D6AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8491E7E1E44EE600093D6AB /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		F8491E7F1E44EE600093D6AB /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		F8491E821E44F2EC0093D6AB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		F8491E851E45F3F30093D6AB /* ZIKCellularAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZIKCellularAuthorization.h; sourceTree = "<group>"; };
+		F8491E861E45F3F30093D6AB /* ZIKCellularAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZIKCellularAuthorization.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F8491E5E1E44E15E0093D6AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8491E831E44F2EC0093D6AB /* CoreTelephony.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F8491E581E44E15E0093D6AB = {
+			isa = PBXGroup;
+			children = (
+				F8491E631E44E15E0093D6AB /* iOS10CellularAuthorizeFix */,
+				F8491E621E44E15E0093D6AB /* Products */,
+				F8491E811E44F2EC0093D6AB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F8491E621E44E15E0093D6AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8491E611E44E15E0093D6AB /* iOS10CellularAuthorizeFix.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8491E631E44E15E0093D6AB /* iOS10CellularAuthorizeFix */ = {
+			isa = PBXGroup;
+			children = (
+				F8491E841E45F3F30093D6AB /* ZIKCellularAuthorization */,
+				F8491E671E44E15E0093D6AB /* AppDelegate.h */,
+				F8491E681E44E15E0093D6AB /* AppDelegate.m */,
+				F8491E6A1E44E15E0093D6AB /* MainViewController.h */,
+				F8491E6B1E44E15E0093D6AB /* MainViewController.m */,
+				F8491E7E1E44EE600093D6AB /* WebViewController.h */,
+				F8491E7F1E44EE600093D6AB /* WebViewController.m */,
+				F8491E6D1E44E15E0093D6AB /* Main.storyboard */,
+				F8491E701E44E15E0093D6AB /* Assets.xcassets */,
+				F8491E721E44E15E0093D6AB /* LaunchScreen.storyboard */,
+				F8491E751E44E15E0093D6AB /* Info.plist */,
+				F8491E641E44E15E0093D6AB /* Supporting Files */,
+			);
+			path = iOS10CellularAuthorizeFix;
+			sourceTree = "<group>";
+		};
+		F8491E641E44E15E0093D6AB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F8491E651E44E15E0093D6AB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F8491E811E44F2EC0093D6AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8491E821E44F2EC0093D6AB /* CoreTelephony.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F8491E841E45F3F30093D6AB /* ZIKCellularAuthorization */ = {
+			isa = PBXGroup;
+			children = (
+				F8491E851E45F3F30093D6AB /* ZIKCellularAuthorization.h */,
+				F8491E861E45F3F30093D6AB /* ZIKCellularAuthorization.m */,
+			);
+			name = ZIKCellularAuthorization;
+			path = ../../ZIKCellularAuthorization;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F8491E601E44E15E0093D6AB /* iOS10CellularAuthorizeFix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8491E781E44E15E0093D6AB /* Build configuration list for PBXNativeTarget "iOS10CellularAuthorizeFix" */;
+			buildPhases = (
+				F8491E5D1E44E15E0093D6AB /* Sources */,
+				F8491E5E1E44E15E0093D6AB /* Frameworks */,
+				F8491E5F1E44E15E0093D6AB /* Resources */,
+				F8491E881E45F4E00093D6AB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOS10CellularAuthorizeFix;
+			productName = iOS10CellularAuthorizeFix;
+			productReference = F8491E611E44E15E0093D6AB /* iOS10CellularAuthorizeFix.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F8491E591E44E15E0093D6AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = zuik;
+				TargetAttributes = {
+					F8491E601E44E15E0093D6AB = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F8491E5C1E44E15E0093D6AB /* Build configuration list for PBXProject "iOS10CellularAuthorizeFix" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F8491E581E44E15E0093D6AB;
+			productRefGroup = F8491E621E44E15E0093D6AB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F8491E601E44E15E0093D6AB /* iOS10CellularAuthorizeFix */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F8491E5F1E44E15E0093D6AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8491E741E44E15E0093D6AB /* LaunchScreen.storyboard in Resources */,
+				F8491E711E44E15E0093D6AB /* Assets.xcassets in Resources */,
+				F8491E6F1E44E15E0093D6AB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F8491E881E45F4E00093D6AB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh ${PROJECT_DIR}/IncreaseBundleId.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F8491E5D1E44E15E0093D6AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8491E801E44EE600093D6AB /* WebViewController.m in Sources */,
+				F8491E871E45F3F30093D6AB /* ZIKCellularAuthorization.m in Sources */,
+				F8491E6C1E44E15E0093D6AB /* MainViewController.m in Sources */,
+				F8491E691E44E15E0093D6AB /* AppDelegate.m in Sources */,
+				F8491E661E44E15E0093D6AB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F8491E6D1E44E15E0093D6AB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8491E6E1E44E15E0093D6AB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F8491E721E44E15E0093D6AB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8491E731E44E15E0093D6AB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F8491E761E44E15E0093D6AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F8491E771E44E15E0093D6AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F8491E791E44E15E0093D6AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = iOS10CellularAuthorizeFix/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zuik.iOS10CellularAuthorizeFix-1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F8491E7A1E44E15E0093D6AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = iOS10CellularAuthorizeFix/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zuik.iOS10CellularAuthorizeFix-1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F8491E5C1E44E15E0093D6AB /* Build configuration list for PBXProject "iOS10CellularAuthorizeFix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8491E761E44E15E0093D6AB /* Debug */,
+				F8491E771E44E15E0093D6AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8491E781E44E15E0093D6AB /* Build configuration list for PBXNativeTarget "iOS10CellularAuthorizeFix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8491E791E44E15E0093D6AB /* Debug */,
+				F8491E7A1E44E15E0093D6AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F8491E591E44E15E0093D6AB /* Project object */;
+}
