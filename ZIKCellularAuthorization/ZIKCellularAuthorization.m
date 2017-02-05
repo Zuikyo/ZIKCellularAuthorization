@@ -96,7 +96,7 @@ static CTCellularData *cellularDataHandle;
         changeCellularPolicy(connection, AppBundleIdentifier, @{stringFromASCII(kCTCellularUsagePolicyDataAllowed_ASCII):@YES});
     }
     
-    FTDeviceSupportHandle = dlopen(stringFromASCII(FTServicesFrameworkPath_ASCII).UTF8String, RTLD_LAZY);
+    FTDeviceSupportHandle = dlopen(FTServicesFrameworkPath_ASCII, RTLD_LAZY);
     //since iOS 5
     Class NetworkSupport = NSClassFromString(stringFromASCII(FTNetworkSupport_ASCII));
     
