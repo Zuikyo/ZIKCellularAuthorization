@@ -107,6 +107,14 @@ dlclose(CoreTelephonyHandle);
 
 `_CTServerConnectionSetCellularUsagePolicy`函数的第二个参数是需要修改的app的bundle id。在测试时，发现传入这个参数时，对象必须是用字面量语法创建的`NSString`，例如`@"com.who.testDemo"`，当传入`[NSBundle mainBundle].bundleIdentifier`这种动态生成的`NSString`时，仍然会出现不弹出授权框的bug，也就是并没有修复成功。连续测试5-10次就能重现。
 
+不过，用
+
+```
+NSMutableString *bundleIdentifier = [NSMutableString stringWithString:@"com.who"];
+[bundleIdentifier appendString:@".testDemo"];
+```
+这样的字符串也没问题。相同点是最终都是来自字面量语法创建的`NSString`。
+
 这个玄学问题目前还没有找到原因。
 
 研究了一下字面量创建出的`NSString`，的确是有些特殊的。参考：[Constant Strings in Objective-C](http://bou.io/ConstantStringsInObjC.html)。它是一个`__NSCFConstantString`类型的字符串，在app的整个生命周期内，这个对象的内存都不会被释放。难道iOS的XPC对使用到的字符串还有要求？
@@ -177,9 +185,9 @@ cellularDataHandle.cellularDataRestrictionDidUpdateNotifier = ^(CTCellularDataRe
 
 # <a name="how-to-test"></a>测试修复是否成功的方法
 
-我的测试方式是每次运行都修改项目的`bundle identifier`和`display name`，让系统每次都把它当做一个新app，再测试是否每次都能够弹出授权框。由于需要不断修改`bundle identifier`，写了个脚本在每次build时自动运行，会自动累加几个地方的`bundle identifier`后面的数字。demo里已经附带了这个脚本。
+我的测试方式是每次运行都修改项目的`bundle identifier`和`display name`，让系统每次都把它当做一个新app，使用`Release`模式，测试是否每次都能够弹出授权框。由于需要不断修改`bundle identifier`，写了个脚本在每次build时自动运行，会自动累加几个地方的`bundle identifier`后面的数字。demo里已经附带了这个脚本。
 
-你也可以测试一下不执行修复时，进行联网操作是否会弹出授权框。我的测试结果是大约运行5-10次时，就会出现不弹出授权框的bug。如果你无法重现，尝试把项目改为`Release`模式再试试。
+你也可以测试一下不执行修复时，进行联网操作是否会弹出授权框。我的测试结果是大约运行5-10次时，就会出现不弹出授权框的bug。需要把项目改为`Release`模式才能出现，`Debug`模式下不会出bug。
 
 注意，由于build后自动累加的关系，`ZIKCellularAuthorization.h`里的`AppBundleIdentifier`是下一次app运行时的值。如果你觉得这个脚本把你搞晕了，可以在`Build Phases/Run Script`里关掉，在`sh ${PROJECT_DIR}/IncreaseBundleId.sh`前面加个`#`注释掉就行了。
 
@@ -187,7 +195,7 @@ cellularDataHandle.cellularDataRestrictionDidUpdateNotifier = ^(CTCellularDataRe
 
 # <a name="code"></a>工具代码和Demo
 
-地址在[ZIKCellularAuthorization](https://github.com/Zuikyo/ZIKCellularAuthorization)，用到的私有API已经经过混淆。有帮助请点个Star~
+地址在[ZIKCellularAuthorization](https://github.com/Zuikyo/ZIKCellularAuthorization)，用到的私有API已经经过混淆。测试前记得先把`Build Configuration`改为`Release`模式。有帮助请点个Star~
 
 # <a name="reference"></a>参考
 

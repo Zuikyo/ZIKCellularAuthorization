@@ -88,8 +88,6 @@ static CTCellularData *cellularDataHandle;
         }
         
         CFTypeRef connection = connectionCreateOnTargetQueue(kCFAllocatorDefault,stringFromASCII(PreferencesAppBundleId_ASCII),dispatch_get_main_queue(),NULL);
-        //    NSMutableString *bundleIdentifier = [NSMutableString stringWithString:@"com.zuik141"];
-        //    [bundleIdentifier appendString:@".iOS10CellularAuthorizeFix"];
         
         /*此方法无法直接修改app的蜂窝权限，目的是让系统更新一次蜂窝权限数据
          传入AppBundleIdentifier参数时，对象必须用字面量语法创建，直接传入[NSBundle mainBundle].bundleIdentifier时，有一定几率不会弹授权框，大概测试5-10次会出现），原因未知*/
