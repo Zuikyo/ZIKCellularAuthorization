@@ -76,7 +76,7 @@ dlclose(FTServicesHandle);
 
 既然更改任意app的蜂窝网络权限后，能让app弹出授权框，那么只要找到一个方法，能让系统更新一下网络权限相关的数据就可以了。
 
-用`hopper`反编译一下系统的设置app，找到了里面修改app网络权限的API。用到的是`CoreTelephony.framework`里的两个私有C函数：
+用`hopper`反编译一下系统的设置app用到的库`PreferencesUI.framework`，找到了里面修改app网络权限的API。用到的是`CoreTelephony.framework`里的两个私有C函数：
 
 `CTServerConnection* _CTServerConnectionCreateOnTargetQueue(CFAllocatorRef, NSString *, dispatch_queue_t, void*/*一个block类型的参数*/)`
 
