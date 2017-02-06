@@ -10,6 +10,7 @@
 	* [让系统更新蜂窝网络权限数据](#update-cellular-data)
 		* [调用方式](#how-to-use-2)
 		* [出现了玄学](#strange-thing)
+	* [用控制台跟踪进程间通信](#debug-trace)
 * [检查网络权限情况](#check-celluar-auth)
 * [检测国行机型和是否有蜂窝功能](#check-device)
 * [测试修复是否成功的方法](#how-to-test)
@@ -120,6 +121,21 @@ NSMutableString *bundleIdentifier = [NSMutableString stringWithString:@"com.who"
 研究了一下字面量创建出的`NSString`，的确是有些特殊的。参考：[Constant Strings in Objective-C](http://bou.io/ConstantStringsInObjC.html)。它是一个`__NSCFConstantString`类型的字符串，在app的整个生命周期内，这个对象的内存都不会被释放。难道iOS的XPC对使用到的字符串还有要求？
 
 时间有限，这个问题以后再研究吧。
+
+## <a name="debug-trace"></a>用控制台跟踪进程间通信
+
+这几个私有API都用了进程间通信，要进行调试跟踪有点麻烦。
+
+可以使用Mac上的控制台查看设备的实时log，寻找通信行为。打开控制台app，在左侧选择连接到Mac的iOS设备，就可以看到设备log了。
+
+下面是调用了`_CTServerConnectionSetCellularUsagePolicy`之后的log，传入bundle id时用的是字面量创建的字符串：
+![使用字面量字符串传入bundle id](http://upload-images.jianshu.io/upload_images/1865432-e5eec32d03c2fa7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+高亮的那行是测试demo打的log，可以认为就是在这里调用了`_CTServerConnectionSetCellularUsagePolicy`，
+可以看到，调用之后系统更新了本app的权限状态。`CommCenter`就是这几个私有API通信的对应进程，用于管理设备的网络。参考[CommCenter - The iPhone Wiki](https://www.theiphonewiki.com/wiki//System/Library/Frameworks/CoreTelephony.Framework/Support/CommCenter)。
+
+下面是用`[NSBundle mainBundle].bundleIdentifier`传入`_CTServerConnectionSetCellularUsagePolicy`的第二个参数时的log：
+![使用动态创建的字符串传入bundle id](http://upload-images.jianshu.io/upload_images/1865432-87dfca01425cbad0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+没有看到系统更新app权限的相关log，进程间通信可能失败了。因此可以确定，使用`_CTServerConnectionSetCellularUsagePolicy`时必须传入字面量语法创建的字符串。
 
 # <a name="check-celluar-auth"></a>检查网络权限情况
 

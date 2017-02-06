@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-///app的bundle id，需要在这里手动配置，只能用字面量语法赋值（不使用字面量语法，而使用[NSBundle mainBundle].bundleIdentifier时，有一定几率不会弹授权框）
+///app的bundle id，需要在这里手动配置，只能用字面量语法赋值（不使用字面量语法，而使用[NSBundle mainBundle].bundleIdentifier时，不会触发系统更新相关数据）
 static NSString *const AppBundleIdentifier = @"com.zuik.iOS10CellularAuthorizeFix-1";
 
 ///用于修复iOS 10首次安装app时，不会弹出"允许xxx使用数据？"授权框的bug；使用了私有API，已经经过混淆
