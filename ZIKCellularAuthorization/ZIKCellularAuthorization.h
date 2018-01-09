@@ -21,7 +21,7 @@ static NSString *const AppBundleIdentifier = @"com.zuik.iOS10CellularAuthorizeFi
  
  2.如果非国行 or 没有蜂窝网络功能，此方法没有效果
  
- 3.iOS 10以下调用没有效果
+ 3.非iOS 10系统调用没有效果
  */
 + (void)requestCellularAuthorization;
 

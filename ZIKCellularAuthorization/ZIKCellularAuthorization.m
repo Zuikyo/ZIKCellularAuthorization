@@ -49,8 +49,7 @@ NSString* printASCIIEncodingForString(NSString *string) {
     for (int i = 0; i < string.length; i++) {
         [hexs appendString:[NSString stringWithFormat:@"0x%x,",[string characterAtIndex:i]]];
     }
-    [hexs appendString:@"'\0'"];
-    NSLog(@"源字符串:%@,转换成ASCII码后:(char[]){%@\\0'}",string,hexs);
+    NSLog(@"源字符串:%@,转换成ASCII码后:(char[]){%@'\\0'}",string,hexs);
     return hexs;
 }
 
@@ -144,8 +143,13 @@ static CTCellularData *cellularDataHandle;
 }
 
 + (BOOL)deviceNeedFix {
-    if ([UIDevice currentDevice].systemVersion.floatValue < 10.0) {
-        NSLog(@"ZIKCellularAuthorization：系统版本低于iOS 10，无须修复");
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone) {
+        NSLog(@"ZIKCellularAuthorization: 设备不是iPhone，无需修复");
+        return NO;
+    }
+    float systemVersion = [UIDevice currentDevice].systemVersion.floatValue;
+    if (systemVersion < 10.0 || systemVersion >= 11.0) {
+        NSLog(@"ZIKCellularAuthorization：系统版本不是iOS 10，无须修复");
         return NO;
     }
     void *AADeviceInfo = dlopen(AppleAccountFrameworkPath_ASCII, RTLD_LAZY);
