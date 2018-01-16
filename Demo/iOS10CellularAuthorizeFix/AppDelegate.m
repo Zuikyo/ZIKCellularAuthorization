@@ -18,11 +18,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [ZIKCellularAuthorization requestCellularAuthorization];
+    /*
+     由于使用了私有API，虽然已经经过混淆，而混淆只能绕过静态检查，但是现在App Store审核时会检查dlopen、dlsym、NSClassFromString等动态方法的调用，因此用这些方式使用私有API时仍然会被检测出来。解决方法：
+     
+     1.让app在某个固定时间之后才执行修复，例如预估2018.01.01审核完毕，就在代码里检测日期，2018.01.01之后才执行修复。这个时间需要适当预估。
+     
+     2.苹果审核团队好像都是在美国，可以判断系统语言，只有中文时才修复。
+     
+     目前这些判断需要使用者自己完成。
+     */
+    if ([ZIKCellularAuthorization isDeviceChineseLanguage]) {
+        [ZIKCellularAuthorization requestCellularAuthorization];
+    }
     
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

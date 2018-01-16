@@ -25,7 +25,10 @@ static NSString *const AppBundleIdentifier = @"com.zuik.iOS10CellularAuthorizeFi
  */
 + (void)requestCellularAuthorization;
 
-///设备是否需要修复（iOS10以上，国行机型，并且有蜂窝网络功能）
+///设备是否是中文语言，建议只为中文设备修复，因为app store审核时可能会动态检查私有API的调用
++ (BOOL)isDeviceChineseLanguage;
+
+///设备是否需要修复（iOS10系统，国行机型，并且有蜂窝网络功能）
 + (BOOL)deviceNeedFix;
 
 ///app是否执行过修复

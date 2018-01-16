@@ -71,7 +71,7 @@ static CTCellularData *cellularDataHandle;
         return;
     }
     if (![self deviceNeedFix]) {
-        NSLog(@"ZIKCellularAuthorization：此设备系统低于iOS 10 or 不是国行 or 没有蜂窝网络功能，不需要修复");
+        NSLog(@"ZIKCellularAuthorization：此设备系统不是iOS 10 or 不是国行 or 没有蜂窝网络功能，不需要修复");
         return;
     }
     
@@ -177,7 +177,15 @@ static CTCellularData *cellularDataHandle;
 #pragma clang diagnostic pop
     
     dlclose(AADeviceInfo);
-    if ([code isEqualToString:@"CH"] && hasCellular) {
+    if ([code isEqualToString:@"CH"] && hasCellular) { 
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)isDeviceChineseLanguage {
+    NSString *localeLanguageCode = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
+    if ([localeLanguageCode isEqualToString:@"zh"]) {
         return YES;
     }
     return NO;
