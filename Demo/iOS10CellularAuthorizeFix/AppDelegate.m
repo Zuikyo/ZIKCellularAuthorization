@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     /*
-     由于使用了私有API，虽然已经经过混淆，而混淆只能绕过静态检查，但是现在App Store审核时会检查dlopen、dlsym、NSClassFromString等动态方法的调用，因此用这些方式使用私有API时仍然会被检测出来。解决方法：
+     由于使用了私有API，虽然已经经过混淆，但混淆只能绕过静态检查，而现在App Store审核时会检查dlopen、dlsym、NSClassFromString等动态方法的调用，因此用这些方式使用私有API时仍然会被检测出来。解决方法：
      
      1.让app在某个固定时间之后才执行修复，例如预估2018.01.01审核完毕，就在代码里检测日期，2018.01.01之后才执行修复。这个时间需要适当预估。
      
