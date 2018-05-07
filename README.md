@@ -1,11 +1,13 @@
 # ZIKCellularAuthorization
-用于修复iOS 10首次安装app时，不会弹出"允许xxx使用数据？"授权框的bug；使用了私有API，已经经过混淆
+用于修复iOS 10首次安装app时，不会弹出"允许xxx使用数据？"授权框的bug。
+
+使用了私有API，请务必阅读[App Store审核问题](#app-store)部分。
 
 # 目录
 
 * [问题描述](#problem)
+* [App Store审核问题](#app-store)
 * [修复方法](#fix)
-   * [App Store审核问题](#app-store)
 	* [弹出授权框](#present-alert)
 		* [调用方式](#how-to-use-1)
 	* [让系统更新蜂窝网络权限数据](#update-cellular-data)
@@ -37,13 +39,9 @@ iOS 10有一个系统bug：app在第一次安装时，第一次联网操作会�
 
 (***update***:我在iPhone6s 10.3.2上测试，没有再重现此问题，猜测苹果至少在10.3.2系统以上修复了这个bug)。
 
-# <a name="fix"></a>修复方法
+# <a name="app-store"></a>App Store审核问题
 
-春节有点空，找到了几个相关的私有API来修复这个bug。
-
-## <a name="app-store"></a>App Store审核问题
-
-由于使用了私有API，虽然已经经过混淆，但混淆只能绕过静态检查，而现在App Store审核时会检查dlopen、dlsym、NSClassFromString等动态方法的调用，因此用这些方式使用私有API时仍然会被检测出来。
+由于使用了私有API，虽然已经经过字符串混淆，但是现在App Store审核时会在运行时检查dlopen、dlsym、NSClassFromString等动态方法的调用，因此用这些方式使用私有API时仍然会被检测出来。
 
 解决方法：
 
@@ -53,9 +51,13 @@ iOS 10有一个系统bug：app在第一次安装时，第一次联网操作会�
 
 <del> 目前这些判断需要使用者自己完成。</del>
 
-**update:** 目前不建议在 App Store 正式版中使用。现在苹果禁止在使用 performSelector: 时传入动态生成的参数，参考：[Are performSelector and respondsToSelector banned by App Store?](https://stackoverflow.com/questions/42662028/are-performselector-and-respondstoselector-banned-by-app-store)。这通过静态分析是能够被检查出来的。苹果会检查使用了 performSelector: 的那部分汇编代码，判断传入的参数是否是静态编译的。
+**update:** 目前不建议在 App Store 正式版中使用，企业 app 中可以随意使用。现在苹果禁止在使用 dlopen(), dlsym(), respondsToSelector:, performSelector:, method_exchangeImplementations() 时传入动态生成的参数，参考：[Are performSelector and respondsToSelector banned by App Store?](https://stackoverflow.com/questions/42662028/are-performselector-and-respondstoselector-banned-by-app-store)。这通过静态分析是能够被检查出来的。苹果会检查引用了这些符号的那部分汇编代码，判断传入的参数是否是静态编译的。
+     
+   虽然用我的 [ZIKImageSymbol.h](https://github.com/Zuikyo/ZIKRouter/blob/master/ZIKRouter/Utilities/ZIKImageSymbol/ZIKImageSymbol.h) 可以动态获取 dlopen、dlsym、objc_msgSend 的函数指针，避免引入符号，从而绕过检查，不过我只是用来做一些 debug 工具，没在正式产品中使用过。有兴趣的朋友可以尝试。
+   
+# <a name="fix"></a>修复方法
 
-虽然用我的 [ZIKImageSymbol.h](https://github.com/Zuikyo/ZIKRouter/blob/master/ZIKRouter/Utilities/ZIKImageSymbol/ZIKImageSymbol.h) 可以动态获取 objc_msgSend 的函数指针，再动态调用 selector，绕过检查，不过我只是用来做一些 debug 工具，没在正式产品中使用过。有兴趣的朋友可以尝试。
+春节有点空，找到了几个相关的私有API来修复这个bug。
 
 ## <a name="present-alert"></a>弹出授权框
 
