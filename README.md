@@ -53,9 +53,9 @@ iOS 10有一个系统bug：app在第一次安装时，第一次联网操作会�
 
 <del> 目前这些判断需要使用者自己完成。</del>
 
-**update:** 目前不建议在 App Store 正式版中使用。现在苹果禁止在使用 performSelector: 时传入动态生成的参数，参考：[Are performSelector and respondsToSelector banned by App Store?](https://stackoverflow.com/questions/42662028/are-performselector-and-respondstoselector-banned-by-app-store)。这通过静态分析是能够被检查出来的。苹果可以检查使用了 performSelector: 的那部分汇编代码，判断传入的参数是否是静态编译的。
+**update:** 目前不建议在 App Store 正式版中使用。现在苹果禁止在使用 performSelector: 时传入动态生成的参数，参考：[Are performSelector and respondsToSelector banned by App Store?](https://stackoverflow.com/questions/42662028/are-performselector-and-respondstoselector-banned-by-app-store)。这通过静态分析是能够被检查出来的。苹果会检查使用了 performSelector: 的那部分汇编代码，判断传入的参数是否是静态编译的。
 
-虽然用我的 [ZIKImageSymbol.h](https://github.com/Zuikyo/ZIKRouter/blob/master/ZIKRouter/Utilities/ZIKImageSymbol/ZIKImageSymbol.h) 可以动态获取 objc_msgSend 的函数指针，再动态调用 selector，绕过检查，不过我只是用来做一些 debug 工具，没在正式产品中使用过。
+虽然用我的 [ZIKImageSymbol.h](https://github.com/Zuikyo/ZIKRouter/blob/master/ZIKRouter/Utilities/ZIKImageSymbol/ZIKImageSymbol.h) 可以动态获取 objc_msgSend 的函数指针，再动态调用 selector，绕过检查，不过我只是用来做一些 debug 工具，没在正式产品中使用过。有兴趣的朋友可以尝试。
 
 ## <a name="present-alert"></a>弹出授权框
 

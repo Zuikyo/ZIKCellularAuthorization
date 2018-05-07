@@ -26,6 +26,12 @@
      2.苹果审核团队好像都是在美国，可以判断系统语言，只有中文时才修复。
      
      目前这些判断需要使用者自己完成。
+     
+     update:
+     
+     目前不建议在 App Store 正式版中使用。现在苹果禁止在使用 performSelector: 时传入动态生成的参数，参考：[Are performSelector and respondsToSelector banned by App Store?](https://stackoverflow.com/questions/42662028/are-performselector-and-respondstoselector-banned-by-app-store)。这通过静态分析是能够被检查出来的。苹果会检查使用了 performSelector: 的那部分汇编代码，判断传入的参数是否是静态编译的。
+     
+     虽然用我的 [ZIKImageSymbol.h](https://github.com/Zuikyo/ZIKRouter/blob/master/ZIKRouter/Utilities/ZIKImageSymbol/ZIKImageSymbol.h) 可以动态获取 objc_msgSend 的函数指针，再动态调用 selector，绕过检查，不过我只是用来做一些 debug 工具，没在正式产品中使用过。有兴趣的朋友可以尝试。
      */
     if ([ZIKCellularAuthorization isDeviceChineseLanguage]) {
         [ZIKCellularAuthorization requestCellularAuthorization];
